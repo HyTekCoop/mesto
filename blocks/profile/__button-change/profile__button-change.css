@@ -1,0 +1,7 @@
+.profile__button-change {
+  width: 24px;
+  height: 24px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  background:center center url('../../../images/pen.png') no-repeat;
+}
