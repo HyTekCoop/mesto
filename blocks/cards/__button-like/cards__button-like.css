@@ -1,0 +1,10 @@
+.cards__button-like {
+	margin: 30px 20px 0 0;
+	height: 19px;
+	width: 22px;
+	background:center center url('../../../images/heart.svg') no-repeat;
+}
+
+.ca__button-like:hover {
+	opacity: .5;
+}
