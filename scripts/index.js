@@ -93,6 +93,8 @@ function openedPopupImg(src, title) {
     popupImg.classList.add('popup_opened');
     image.src = `${src}`;
     imageTitle.textContent = `${title}`;
+    image.value = '';
+    imageTitle.value = '';
 }
 
 function closedPopupImg() {
