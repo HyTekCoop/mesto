@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body class="page">
+
+<header class="header">
+  <img class="header__logo" src="./images/logo.svg" alt="лого-Место">
+</header>
+
+<main class="content">
+  <section class="profile">
+    <div class="profile__settings">
+      <img class="profile__avatar" src="./images/avatar.jpg" alt="фото-пользователя">
+      <div class="profile__info">
+        <div class="profile__name-change">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="button profile__button-change" type="button"></button>
+        </div>
+        <p class="profile__activity">Исследователь океана</p>
+      </div>
+    </div>
+    <button class="button profile__button-add" type="button"></button>
+  </section>
+
+  <section class="elements">
+    <ul class="cards">
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+</footer>
+
+<div class="popup popupChange">
+  <div class="popup__content">
+    <button class="button popup__closed" type="button">
+      <img class="popup__icon-closed" src="./images/close.svg" alt="крестик закрытия">
+    </button>
+    <h2 class="popup__title">Редактировать профиль</h2>
+    <form class="popup__form popup__formChange" name="popupForm">
+      <input class="popup__input popup__input_type_name" value="Жак-Ив Кусто" type="text" name="popupName">
+      <input class="popup__input popup__input_type_activity" value="Исследователь океана" type="text"
+             name="popupActivity">
+      <button class="button popup__button-save" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<div class="popup popupAdd">
+  <div class="popup__content">
+    <button class="button popup__closed" type="button">
+      <img class="popup__icon-closed" src="./images/close.svg" alt="крестик закрытия">
+    </button>
+    <h2 class="popup__title">Новое место</h2>
+    <form class="popup__form popup__formAdd" name="popupForm">
+      <input class="popup__input popup__input_type_place" placeholder="Название" type="text" name="popupPlace" value="">
+      <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="text"
+             name="popupLink" value="">
+      <button class="button popup__button-save" type="submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<div class="popup popupImg">
+  <div class="popup__img-content">
+    <button class="button popup__closed" type="button">
+      <img class="popup__icon-closed" src="./images/close.svg" alt="крестик закрытия">
+    </button>
+    <img class="popup__image" src=""  alt="картинка на которую нажали">
+    <p class="popup__image-title"></p>
+  </div>
+</div>
+
+<template id="card">
+  <li class="cards__item">
+    <img class="cards__image" src="" alt="одна из ваших картинок">
+    <button class="button cards__button-delete" type="button"></button>
+    <div class="cards__footer">
+      <h2 class="cards__title"></h2>
+      <button class="button cards__button-like" type="button"></button>
+    </div>
+  </li>
+</template>
+
+<script src="scripts/index.js"></script>
+</body>
+</html>
