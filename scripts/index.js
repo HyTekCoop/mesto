@@ -52,9 +52,18 @@ function closePopupOverlay(evt) {
 
 function openEditProfilePopup() {
     openPopup(popupEditProfile);
+    enableValidation(obj);
     //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
     inputUserName.value = profileName.textContent;
     inputUserActivity.value = profileActivity.textContent;
+}
+
+function openAddCardPopup() {
+    openPopup(popupAddCard);
+    enableValidation(obj);
+    //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
+    inputCardName.value = '';
+    inputCardLink.value = '';
 }
 
 function openImagePopup(src, title) {
@@ -74,10 +83,8 @@ function formEditProfileSubmitHandler(evt) {
 
 function formAddCardSubmitHandler(evt) {
     evt.preventDefault();
-    closePopup(popupAddCard);
     addCard(createCard(inputCardName.value, inputCardLink.value));
-    inputCardName.value = '';
-    inputCardLink.value = '';
+    closePopup(popupAddCard);
 }
 
 function createCard(place, link) {
@@ -115,7 +122,7 @@ openEditProfileBtn.addEventListener('click', openEditProfilePopup);
 
 formAddCard.addEventListener('submit', formAddCardSubmitHandler);
 closeAddCardBtn.addEventListener('click', () => closePopup(popupAddCard));
-openAddCardBtn.addEventListener('click', () => openPopup(popupAddCard));
+openAddCardBtn.addEventListener('click', openAddCardPopup);
 
 closePopupImg.addEventListener('click', () => closePopup(popupImg));
 
