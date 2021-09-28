@@ -92,7 +92,9 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
 function resetForm(popup) {
     const Forms = popup.querySelector('.popup__form');
     const inputElement = Forms.querySelectorAll('.popup__input');
+    console.log(Forms);
     inputElement.forEach((data) => {
+        console.log(data);
        data.classList.remove(obj.inputErrorClass);
        popup.querySelector(`.${data.id}-error`).classList.remove(obj.errorClass);
     });
