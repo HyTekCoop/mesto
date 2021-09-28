@@ -24,14 +24,16 @@ const profileActivity = profile.querySelector('.profile__activity');
 const cardTemplate = document.querySelector('#card').content;
 const cards = document.querySelector('.cards');
 
-function openPopup (popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
-    enableValidation(obj);
+    if (!(popup === popupImg)) {
+        enableValidation(obj);
+    }
     document.addEventListener('keydown', closePopupEsc);
     document.addEventListener('click', closePopupOverlay);
 }
 
-function closePopup (popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened')
     document.removeEventListener('keydown', closePopupEsc);
     document.removeEventListener('click', closePopupOverlay);
@@ -103,7 +105,7 @@ function createCard(place, link) {
         const listItem = deleteButton.closest('.cards__item');
         listItem.remove();
     });
-    return(cardElement);
+    return (cardElement);
 }
 
 function addCard(card) {
@@ -112,7 +114,8 @@ function addCard(card) {
 
 for (let i = 0; i < initialCards.length; i++) {
     addCard(createCard(initialCards[i].name, initialCards[i].link))
-};
+}
+;
 
 //обработка действий
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
