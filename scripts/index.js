@@ -26,6 +26,7 @@ const cards = document.querySelector('.cards');
 
 function openPopup (popup) {
     popup.classList.add('popup_opened');
+    enableValidation(obj);
     document.addEventListener('keydown', closePopupEsc);
     document.addEventListener('click', closePopupOverlay);
 }
@@ -52,7 +53,6 @@ function closePopupOverlay(evt) {
 
 function openEditProfilePopup() {
     openPopup(popupEditProfile);
-    enableValidation(obj);
     //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
     inputUserName.value = profileName.textContent;
     inputUserActivity.value = profileActivity.textContent;
@@ -60,7 +60,6 @@ function openEditProfilePopup() {
 
 function openAddCardPopup() {
     openPopup(popupAddCard);
-    enableValidation(obj);
     //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
     inputCardName.value = '';
     inputCardLink.value = '';
@@ -125,6 +124,3 @@ closeAddCardBtn.addEventListener('click', () => closePopup(popupAddCard));
 openAddCardBtn.addEventListener('click', openAddCardPopup);
 
 closePopupImg.addEventListener('click', () => closePopup(popupImg));
-
-
-
