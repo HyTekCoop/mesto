@@ -1,0 +1,16 @@
+.cards__item {
+	position: relative;
+	margin: 20px 17px 0 0;
+}
+
+@media screen and (min-width: 880px) {
+	.cards__item:nth-child(3n) {
+		margin: 20px 0 0;
+	}
+}
+
+@media screen and (max-width: 635px) {
+	.cards__item {
+		margin: 20px 17px 0;
+	}
+}

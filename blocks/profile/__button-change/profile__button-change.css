@@ -1,0 +1,17 @@
+.profile__button-change {
+  margin: 37px 0 0 18px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  background:center center url('../../../images/pen.svg') no-repeat;
+}
+
+@media screen and (max-width: 400px){
+  .profile__button-change {
+    margin: 36px 0 0 10px;
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
+  }
+}
