@@ -40,6 +40,7 @@ function setEventListeners(formElement, inputSelector, submitButtonSelector, ina
         });
     });
 }
+
 // Функция isValid теперь принимает formElement и inputElement,
 // а не берёт их из внешней области видимости
 function isValid(formElement, inputElement, inputSelector, inputErrorClass, errorClass) {
@@ -53,6 +54,7 @@ function isValid(formElement, inputElement, inputSelector, inputErrorClass, erro
         hideInputError(formElement, inputElement, inputErrorClass, errorClass);
     }
 }
+
 // Проверяем что все инпуты валидны
 function checkInvalidInput(inputList) {
     return inputList.some((inputElement) => {
@@ -90,15 +92,15 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
 
 // reset формы и удаление полей ошибок после закрытия попапа
 function resetForm(popup) {
-    const Forms = popup.querySelector('.popup__form');
-    const inputElement = Forms.querySelectorAll('.popup__input');
-    console.log(Forms);
-    inputElement.forEach((data) => {
-        console.log(data);
-       data.classList.remove(obj.inputErrorClass);
-       popup.querySelector(`.${data.id}-error`).classList.remove(obj.errorClass);
-    });
-    Forms.reset()
+    if (!(popup === popupImg)) {
+        const Forms = popup.querySelector('.popup__form');
+        const inputElement = Forms.querySelectorAll('.popup__input');
+        inputElement.forEach((data) => {
+            data.classList.remove(obj.inputErrorClass);
+            popup.querySelector(`.${data.id}-error`).classList.remove(obj.errorClass);
+        });
+        Forms.reset()
+    }
 }
-// Вызов функции
-enableValidation(obj);
+
+// Вызов функции происходит в index.js при открытии попапа
