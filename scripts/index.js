@@ -25,14 +25,31 @@ const cardTemplate = document.querySelector('#card').content;
 const cards = document.querySelector('.cards');
 
 function openPopup (popup) {
-    popup.classList.add('popup_opened')
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
+    document.addEventListener('click', closePopupOverlay);
 }
 
 function closePopup (popup) {
     popup.classList.remove('popup_opened')
+    document.removeEventListener('keydown', closePopupEsc);
+    document.removeEventListener('click', closePopupOverlay);
 }
 
-function openedpopupEditProfile(event) {
+function closePopupEsc(evt) {
+    if (evt.keyCode === 27) {
+        closePopup(document.querySelector('.popup_opened'))
+    }
+}
+
+function closePopupOverlay(evt) {
+    const popupopen = document.querySelector('.popup_opened');
+    if (evt.target === popupopen) {
+        closePopup(popupopen);
+    }
+}
+
+function openEditProfilePopup() {
     openPopup(popupEditProfile);
     //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
     inputUserName.value = profileName.textContent;
@@ -93,10 +110,13 @@ for (let i = 0; i < initialCards.length; i++) {
 //обработка действий
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 closeEditProfileBtn.addEventListener('click', () => closePopup(popupEditProfile));
-openEditProfileBtn.addEventListener('click', openedpopupEditProfile);
+openEditProfileBtn.addEventListener('click', openEditProfilePopup);
 
 formAddCard.addEventListener('submit', formAddCardSubmitHandler);
 closeAddCardBtn.addEventListener('click', () => closePopup(popupAddCard));
 openAddCardBtn.addEventListener('click', () => openPopup(popupAddCard));
 
 closePopupImg.addEventListener('click', () => closePopup(popupImg));
+
+
+
