@@ -88,6 +88,15 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
     errorElement.textContent = "";
 }
 
-
+// reset формы и удаление полей ошибок после закрытия попапа
+function resetForm(popup) {
+    const Forms = popup.querySelector('.popup__form');
+    const inputElement = Forms.querySelectorAll('.popup__input');
+    inputElement.forEach((data) => {
+       data.classList.remove(obj.inputErrorClass);
+       popup.querySelector(`.${data.id}-error`).classList.remove(obj.errorClass);
+    });
+    Forms.reset()
+}
 // Вызов функции
 enableValidation(obj);
