@@ -44,11 +44,14 @@
       <img class="popup__icon-closed" src="./images/close.svg" alt="крестик закрытия">
     </button>
     <h2 class="popup__title">Редактировать профиль</h2>
-    <form class="popup__form popup__formChange" name="popupForm">
-      <input class="popup__input popup__input_type_name" placeholder="Имя" value="Жак-Ив Кусто" type="text" name="popupName">
+    <form class="popup__form popup__formChange" name="popupForm" novalidate>
+      <input class="popup__input popup__input_type_name" placeholder="Имя" value="Жак-Ив Кусто" type="text"
+             name="edit-profileName" required minlength="2" maxlength="40" id="name">
+      <span class="popup__error name-error" id="name-error"></span>
       <input class="popup__input popup__input_type_activity" placeholder="Вид деятельности" value="Исследователь океана" type="text"
-             name="popupActivity">
-      <button class="button popup__button-save" type="submit">Сохранить</button>
+             name="edit-profileActivity" required minlength="2" maxlength="200" id="activity">
+      <span class="popup__error activity-error" id="activity-error"></span>
+      <button class="button popup__button-save" type="submit" >Сохранить</button>
     </form>
   </div>
 </div>
@@ -59,11 +62,14 @@
       <img class="popup__icon-closed" src="./images/close.svg" alt="крестик закрытия">
     </button>
     <h2 class="popup__title">Новое место</h2>
-    <form class="popup__form popup__formAdd" name="popupForm">
-      <input class="popup__input popup__input_type_place" placeholder="Название" type="text" name="popupPlace" value="">
-      <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="text"
-             name="popupLink" value="">
-      <button class="button popup__button-save" type="submit">Сохранить</button>
+    <form class="popup__form popup__formAdd" name="popupForm" novalidate>
+      <input class="popup__input popup__input_type_place" placeholder="Название" type="text" name="popupPlace" value=""
+             required minlength="2" maxlength="30" id="place">
+      <span class="popup__error place-error" id="place-error"></span>
+      <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" type="URL"
+             name="popupLink" value="" required id="link">
+      <span class="popup__error link-error" id="link-error"></span>
+      <button class="button popup__button-save popup__button-save_disabled" type="submit" disabled>Сохранить</button>
     </form>
   </div>
 </div>
@@ -90,5 +96,6 @@
 </template>
 <script src="scripts/initial-сards.js"></script>
 <script src="scripts/index.js"></script>
+<script src="scripts/validate.js"></script>
 </body>
 </html>
