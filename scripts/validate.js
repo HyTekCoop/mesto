@@ -92,15 +92,14 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
 
 // reset формы и удаление полей ошибок после закрытия попапа
 function resetForm(popup) {
-    if (!(popup === popupImg)) {
-        const Forms = popup.querySelector('.popup__form');
-        const inputElement = Forms.querySelectorAll('.popup__input');
-        inputElement.forEach((data) => {
-            data.classList.remove(obj.inputErrorClass);
-            popup.querySelector(`.${data.id}-error`).classList.remove(obj.errorClass);
-        });
-        Forms.reset()
-    }
+    const form = popup.querySelector('.popup__form');
+    const inputList = form.querySelectorAll('.popup__input');
+    inputList.forEach((data) => {
+        data.classList.remove(obj.inputErrorClass);
+        popup.querySelector(`.${data.id}-error`).classList.remove(obj.errorClass);
+    });
+    form.reset()
 }
 
-// Вызов функции происходит в index.js при открытии попапа
+// Вызов функции
+enableValidation(obj);
