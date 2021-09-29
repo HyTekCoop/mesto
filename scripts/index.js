@@ -26,9 +26,6 @@ const cards = document.querySelector('.cards');
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    if (!(popup === popupImg)) {
-        enableValidation(obj);
-    }
     document.addEventListener('keydown', closePopupEsc);
     document.addEventListener('click', closePopupOverlay);
 }
@@ -37,19 +34,17 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened')
     document.removeEventListener('keydown', closePopupEsc);
     document.removeEventListener('click', closePopupOverlay);
-    resetForm(popup);
 }
 
 function closePopupEsc(evt) {
-    if (evt.keyCode === 27) {
+    if (evt.key === 'Escape') {
         closePopup(document.querySelector('.popup_opened'))
     }
 }
 
 function closePopupOverlay(evt) {
-    const popupopen = document.querySelector('.popup_opened');
-    if (evt.target === popupopen) {
-        closePopup(popupopen);
+    if (evt.target.classList.contains('popup_opened')) {
+        closePopup(evt.target);
     }
 }
 
@@ -58,6 +53,9 @@ function openEditProfilePopup() {
     //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
     inputUserName.value = profileName.textContent;
     inputUserActivity.value = profileActivity.textContent;
+    resetForm(popupEditProfile);
+    stateButton(Array.from(popupEditProfile.querySelectorAll(obj.inputSelector)),
+        popupEditProfile.querySelector(obj.submitButtonSelector), obj.inactiveButtonClass);
 }
 
 function openAddCardPopup() {
@@ -65,6 +63,9 @@ function openAddCardPopup() {
     //берутся значения на самой странице и добавлятся в попап, чтобы они совпадали
     inputCardName.value = '';
     inputCardLink.value = '';
+    resetForm(popupAddCard);
+    stateButton(Array.from(popupAddCard.querySelectorAll(obj.inputSelector)),
+        popupAddCard.querySelector(obj.submitButtonSelector), obj.inactiveButtonClass);
 }
 
 function openImagePopup(src, title) {
@@ -114,10 +115,15 @@ function addCard(card) {
 
 for (let i = 0; i < initialCards.length; i++) {
     addCard(createCard(initialCards[i].name, initialCards[i].link))
-}
-;
+};
+
 
 //обработка действий
+// Спасибо большое за замечания, впервые как по мне, действительно интересное и полезное замечание по правке кода и как можно сделать лучше,
+// настоящий фидбек и возможностью улучшения кода, чтобы сделать его более совершенным, а не просто замечание "нужно исправить". Я посмотрел код, вроде все понятно,
+// но хотелось бы побольше уделить этому времени и
+// вяским проверкам (но я думаю что с ним все впорядке ;) ). Я обязательно вернусь к этому замечанию чуть-чуть попозже самостоятельно, потому что сейчас нужно уделить внимание
+// и другой учебе, и работе. Еще раз БОЛЬШОЕ СПАСИБО, для меня это самое интересное в ревью)
 formEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 closeEditProfileBtn.addEventListener('click', () => closePopup(popupEditProfile));
 openEditProfileBtn.addEventListener('click', openEditProfilePopup);
