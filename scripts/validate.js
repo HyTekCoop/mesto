@@ -63,7 +63,6 @@ function checkInvalidInput(inputList) {
 }
 
 // В зависимости от валидности импутов мы активируем кнопку или нет
-// Реализация кнопки была в теме Урок6 События change & input, возник вопрос, но забыл, пересмотреть тему!!!!!!!!!!!!!!!! (может вспомню)
 function stateButton(inputList, saveButton, inactiveButtonClass) {
     if (checkInvalidInput(inputList)) {
         saveButton.classList.add(inactiveButtonClass);
