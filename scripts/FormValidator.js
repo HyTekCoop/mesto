@@ -1,3 +1,4 @@
+// экспорт класса в index.js
 export class FormValidator {
     constructor(data, formType) {
         this.formSelector = formType;
