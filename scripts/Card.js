@@ -1,15 +1,17 @@
+import {openPopup} from "./index.js";
+
 export class Card {
 
-    constructor(place, link, openImagePopup) {
+    constructor(template, place, link, openImagePopup) {
         this._link = link;
         this._place = place;
         this._openImagePopup = openImagePopup;
+        this._cardTemplate = template;
     }
 
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
-        const cardElement = document
-            .querySelector('#card')
+        const cardElement = this._cardTemplate
             .content
             .querySelector('.cards__item')
             .cloneNode(true);
@@ -33,7 +35,7 @@ export class Card {
     }
 
     _handleDeleteButton() {
-        this._element.querySelector('.cards__button-delete').closest('.cards__item').remove();
+        this._element.remove();
     }
 
     _handleLikeButton(evt) {
