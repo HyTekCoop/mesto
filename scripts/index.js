@@ -36,7 +36,7 @@ const validationConfig = {
     errorClass: 'popup__error_active'
 }
 
-export function openPopup(popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEsc);
     document.addEventListener('click', closePopupOverlay);
