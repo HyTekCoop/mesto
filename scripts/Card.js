@@ -9,7 +9,8 @@ export class Card {
 
     _getTemplate() {
         // забираем разметку из HTML и клонируем элемент
-        const cardElement = this._cardTemplate
+        const cardElement = document
+            .querySelector(this._cardTemplate)
             .content
             .querySelector('.cards__item')
             .cloneNode(true);
