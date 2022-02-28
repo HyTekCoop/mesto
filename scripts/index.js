@@ -26,7 +26,7 @@ const profileName = profile.querySelector('.profile__name');
 const profileActivity = profile.querySelector('.profile__activity');
 
 const cards = document.querySelector('.cards');
-const templateCard = document.querySelector('.template-card');
+const templateCard = '.template-card';
 
 const validationConfig = {
     inputSelector: '.popup__input',
