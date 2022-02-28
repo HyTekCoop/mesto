@@ -1,4 +1,3 @@
-// экспорт класса в index.js
 export class FormValidator {
     constructor(data, formType) {
         this.formSelector = formType;
@@ -7,31 +6,29 @@ export class FormValidator {
         this.inactiveButtonClass = data.inactiveButtonClass;
         this.inputErrorClass = data.inputErrorClass;
         this.errorClass = data.errorClass;
+        this._inputList = Array.from(this.formSelector.querySelectorAll(this.inputSelector));
+        this._saveButton = formType.querySelector(this.submitButtonSelector);
     }
 
     enableValidation() {
-        this.formSelector.addEventListener('submit', (evt) => {
-            // отменим стандартное поведение
-            evt.preventDefault();
-        });
         // Для формы вызовем функцию setEventListeners,
         // передав ей элемент формы
-        this._setEventListeners(this.formSelector, this.inputSelector, this.submitButtonSelector, this.inactiveButtonClass, this.inputErrorClass, this.errorClass);
+        this._setEventListeners(this.formSelector, this.inputSelector, this.submitButtonSelector, this.inputErrorClass, this.errorClass);
     }
 
-    _setEventListeners(formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) {
+    _setEventListeners(formSelector, inputSelector, submitButtonSelector, inputErrorClass, errorClass) {
         // Находим все поля внутри формы,
         // сделаем из них массив методом Array.from
-        const inputList = Array.from(formSelector.querySelectorAll(inputSelector));
+        /*        const inputList = Array.from(formSelector.querySelectorAll(inputSelector));*/
         // Находим кнопку внутри формы
-        const saveButton = formSelector.querySelector(submitButtonSelector);
-        this._stateButton(inputList, saveButton, inactiveButtonClass);
-        inputList.forEach((inputElement) => {
+        /*        const saveButton = formSelector.querySelector(submitButtonSelector);*/
+        this._stateButton(this._inputList);
+        this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 // Внутри колбэка вызовем isValid,
                 // передав ей форму и проверяемый элемент
                 this._isValid(formSelector, inputElement, inputSelector, inputErrorClass, errorClass);
-                this._stateButton(inputList, saveButton, inactiveButtonClass);
+                this._stateButton(this._inputList);
             });
         });
     }
@@ -56,14 +53,22 @@ export class FormValidator {
     }
 
     // В зависимости от валидности иyпутов мы активируем кнопку или нет
-    _stateButton(inputList, saveButton, inactiveButtonClass) {
+    _stateButton(inputList) {
         if (this._checkInvalidInput(inputList)) {
-            saveButton.classList.add(inactiveButtonClass);
-            saveButton.setAttribute('disabled', true);
+            this.stateButtonInactive();
         } else {
-            saveButton.classList.remove(inactiveButtonClass);
-            saveButton.removeAttribute('disabled');
+            this.stateButtonActive();
         }
+    }
+
+    stateButtonInactive() {
+        this._saveButton.classList.add(this.inactiveButtonClass);
+        this._saveButton.setAttribute('disabled', true);
+    }
+
+    stateButtonActive() {
+        this._saveButton.classList.remove(this.inactiveButtonClass);
+        this._saveButton.removeAttribute('disabled');
     }
 
     _showInputError(formSelector, inputElement, errorMessage, inputErrorClass, errorClass) {
@@ -82,7 +87,10 @@ export class FormValidator {
         errorElement.textContent = "";
     }
 
+    resetError() {
+        this._inputList.forEach((inputElement) => {
+            this._hideInputError(this.formSelector, inputElement, this.inputErrorClass, this.errorClass);
+        });
+    }
 }
-
-
 
